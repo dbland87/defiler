@@ -7,6 +7,14 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.google.gms.google-services'
 
 android {
+    signingConfigs {
+        release {
+            keyPassword 'Killers1080'
+            storeFile file('C:/Users/Mobile/Desktop/keystore/defiler.jks')
+            storePassword 'Killers1080'
+            keyAlias 'key0'
+        }
+    }
     compileSdkVersion 26
     defaultConfig {
         applicationId "io.proxylabs.defiler"
@@ -15,27 +23,33 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        signingConfig signingConfigs.release
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
+    }
+    buildToolsVersion '28.0.1'
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    productFlavors {
     }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
-
     //Firebase
     compile 'com.google.firebase:firebase-core:16.0.1'
-
     //Firebase Auth UI
     implementation 'com.firebaseui:firebase-ui-auth:4.0.0'
-
     testImplementation 'junit:junit:4.12'
 }
 

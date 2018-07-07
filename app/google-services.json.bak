@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "131146826498",
+    "firebase_url": "https://defiler-df890.firebaseio.com",
+    "project_id": "defiler-df890",
+    "storage_bucket": "defiler-df890.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:131146826498:android:9c6571cde1856a4a",
+        "android_client_info": {
+          "package_name": "io.proxylabs.defiler"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "131146826498-arqn4rov8a6qm69ji850ba4igk0k6c62.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.proxylabs.defiler",
+            "certificate_hash": "2b2651841c95f0c4b776162572f3071316a0f521"
+          }
+        },
+        {
+          "client_id": "131146826498-tn3o8696b784m1aj6sh63kgd7u3gt1f7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCX8uOwNrFM_zbuzrTjOUJO5BqvPxMm7FM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "131146826498-tn3o8696b784m1aj6sh63kgd7u3gt1f7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

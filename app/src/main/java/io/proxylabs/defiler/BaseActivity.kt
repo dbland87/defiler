@@ -44,6 +44,15 @@ open class BaseActivity : AppCompatActivity() {
         }
     }
 
+    override fun onDestroy() {
+        AuthUI.getInstance()
+                .signOut(this)
+                .addOnCompleteListener({
+                    Log.d(TAG, "Log out complete")
+                })
+        super.onDestroy()
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -64,33 +73,15 @@ open class BaseActivity : AppCompatActivity() {
     }
 
     private fun onSignInResult(resultCode: Int, data: Intent?) {
-        val task: Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(data)
-        try {
-            val account: GoogleSignInAccount = task.getResult(ApiException::class.java)
-            firebaseAuthWithGoogle(account)
-        } catch (e: ApiException) {
-            Log.d(TAG, "Google sign in failed", e)
-            if (BuildConfig.DEBUG) {
-                Toast.makeText(this, "Google sign in failed: $e", Toast.LENGTH_LONG).show()
-                onSignInFailure()
-            }
-        }
-    }
+        if (resultCode == Activity.RESULT_OK) {
+            Log.d(TAG, "Sign in success")
 
-    private fun firebaseAuthWithGoogle(account: GoogleSignInAccount) {
-        Log.d(TAG, "firebaseAuthWithGoogle: $account.id")
-        val credential: AuthCredential = GoogleAuthProvider.getCredential(account.idToken, null)
-        auth?.let {
-            it.signInWithCredential(credential)
-                    .addOnCompleteListener({
-                        if (it.isSuccessful) {
-                            Log.d(TAG, "signInWithCredential:success")
-                        } else {
-                            Log.d(TAG, "signInWithCredential:failure ${it.exception}")
-                            Toast.makeText(this, "Firebase sign in failed: ${it.exception}", Toast.LENGTH_LONG).show()
-                            onSignInFailure()
-                        }
-                    })
+        } else {
+            Log.d(TAG, "Sign in Failure")
+            if (BuildConfig.DEBUG) {
+                Toast.makeText(this, "Google sign in failed", Toast.LENGTH_LONG).show()
+            }
+            onSignInFailure()
         }
     }
 
